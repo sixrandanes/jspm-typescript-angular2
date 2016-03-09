@@ -1,0 +1,255 @@
+// Surcharge CSS Materialize pour les messages d erreur avec ngMessages
+
+$validation-transition: 0.48s ease;
+
+.input-field {
+  margin-top: 1rem;
+  label {
+    left: 0 !important; // Materialize override
+  }
+
+  .field-hint {
+    font-size: $label-font-size;
+    display: block;
+    float: left;
+    margin-top: -0.5rem;
+    position: relative;
+    >div {
+      white-space: nowrap;
+      transition: transform #{$validation-transition};
+      transition-property: opacity, transform;
+      &.ng-enter,
+      &.ng-leave.ng-leave-active {
+        opacity: 0;
+        transform: translate3d(0, -50%, 0);
+      }
+      &.ng-leave,
+      &.ng-enter.ng-enter-active {
+        opacity: 1;
+        transform: none;
+      }
+      &.ng-leave, &.ng-leave-active {
+        position: absolute;
+        top: 0;
+      }
+    }
+  }
+
+  .character-counter {
+    @extend .field-hint;
+    transition: $validation-transition;
+    opacity: 0;
+    float: right;
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  // Valid Input Style
+  input.validate, textarea.validate {
+    &.ng-valid.ng-dirty,
+    &:focus.ng-valid.ng-dirty {
+
+      border-bottom: 1px solid $input-success-color;
+      box-shadow: 0 1px 0 0 $input-success-color;
+      +div, +label {
+        color: $input-success-color;
+        transition: #{$validation-transition};
+        +div, +label { // Style the hint
+          color: $input-success-color;
+          transition: #{$validation-transition};
+          +div, +label { // Style the char counter
+            color: $input-success-color;
+            transition: #{$validation-transition};
+          }
+        }
+      }
+
+      &.ignore-success {
+        border-bottom: 1px solid $input-focus-color;
+        box-shadow: 0 1px 0 0 $input-focus-color;
+        +div, +label {
+          color: $input-focus-color;
+          transition: #{$validation-transition};
+          +div, +label { // Style the hint
+            color: $input-focus-color;
+            transition: #{$validation-transition};
+            +div, +label {
+              color: $input-focus-color;
+              transition: #{$validation-transition};
+            }
+          }
+        }
+      }
+    }
+
+
+    // Invalid Input Style
+    &.ng-invalid.ng-dirty,
+    &.ng-invalid-email.ng-dirty,
+    &:focus.ng-invalid-email.ng-dirty,
+    &:focus.ng-invalid.ng-dirty {
+      border-bottom: 1px solid #{$input-error-color};
+      box-shadow: 0 1px 0 0 #{$input-error-color};
+      +div, +label {
+        color: $input-error-color;
+        transition: #{$validation-transition};
+        +div, +label { // Style the hint
+          color: $input-error-color;
+          transition: #{$validation-transition};
+          +div, +label { // Style the char counter
+            color: $input-error-color;
+            transition: #{$validation-transition};
+          }
+        }
+      }
+    }
+  }
+}
+
+// Default textarea
+textarea {
+  width: 100%;
+  height: 3rem;
+  background-color: transparent;
+
+  // TODO determine if there is a reason for Materialize's odd textarea styling
+  &.materialize-textarea {
+    min-height: auto !important; // materialize override
+    margin-bottom: 8px;
+    padding: 0.6rem 0 0 0 !important; // materialize override
+  }
+}
+
+// For textarea autoresize
+.hiddendiv {
+  //display: block !important;  // materialize override
+  display: none;
+}
+
+// Modification de l'affichage des Select
+.dropdown-content li > a, .dropdown-content li > span {
+  font-size: 1rem;
+  padding: 5px 1rem;
+}
+
+/***************
+  Select Field
+***************/
+.select-label {
+  position: absolute;
+}
+
+.select-wrapper {
+  position: relative;
+
+  input.select-dropdown {
+    position: relative;
+    cursor: pointer;
+    // color: #444;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $input-border-color;
+    outline: none;
+    height: 3rem;
+    line-height: 3rem;
+    width: 100%;
+    font-size: 1rem;
+    margin: 0 0 15px 0;
+    padding: 0;
+    display: block;
+  }
+
+  span.caret {
+    color: initial;
+    position: absolute;
+    right: 0;
+    top: 6px;
+    font-size: 10px;
+    background-color: #FFF;
+    padding: 5px 0;
+    z-index: 1;
+
+    &.disabled {
+      color: $input-disabled-color;
+    }
+  }
+
+  & + label {
+    position: absolute;
+    top: -14px;
+    font-size: $label-font-size;
+  }
+}
+
+select { display: none; }
+select.browser-default {
+  display: block;
+  margin-top: 15px;
+
+  & + label { top: -0.8rem; }
+}
+
+// Disabled styles
+select:disabled {
+  color: rgba(0,0,0,.3);
+}
+
+.select-wrapper input.select-dropdown:disabled {
+  color: rgba(0,0,0,.3);
+  cursor: default;
+  -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+  -moz-user-select: none; /* mozilla browsers */
+  -ms-user-select: none; /* IE10+ */
+  border-bottom: 1px solid rgba(0,0,0,.3);
+}
+
+.select-wrapper i {
+  color: rgba(0,0,0,.3);
+}
+
+.select-dropdown li.disabled,
+.select-dropdown li.disabled > span,
+.select-dropdown li.optgroup.disabled > span,
+.select-dropdown li.optgroup {
+  color: rgba(0,0,0,.3);
+}
+
+.select-dropdown {
+  li.disabled, li.disabled > span, li.optgroup {
+    color: rgba(0,0,0,.3);
+    background-color: transparent;
+  }
+
+  li.disabled > span label::before {
+    border: 2px solid rgba(0, 0, 0, .3);
+  }
+}
+
+// Icons
+.select-dropdown li {
+  img {
+    height: $dropdown-item-height - 10;
+    width: $dropdown-item-height - 10;
+    margin: 5px 15px;
+    float: right;
+  }
+}
+
+// Optgroup styles
+.select-dropdown li.optgroup {
+  border-top: 1px solid $dropdown-hover-bg-color;
+
+  &.selected > span {
+    color: rgba(0, 0, 0, .7);
+  }
+
+  & > span {
+    color: $radio-empty-color;
+  }
+
+  & ~ li:not(.optgroup) {
+    padding-left: 1rem;
+  }
+}
+

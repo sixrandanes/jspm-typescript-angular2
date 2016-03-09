@@ -1,0 +1,23 @@
+.modal {
+  overflow-y: visible;
+}
+
+// Ajout de Popup plus larges
+.modal.big-modal {
+  max-height: 90%;
+  width: 65%;
+}
+
+.modal.modal-fixed-footer.big-modal-fixed-footer {
+  max-height: 90%;
+  width: 65%;
+  height: 85%;
+  top: 5% !important;
+}
+
+.modal.modal-fixed-footer.extra-big-modal-fixed-footer {
+  max-height: 90%;
+  width: 90%;
+  height: 90%;
+  top: 5% !important;
+}

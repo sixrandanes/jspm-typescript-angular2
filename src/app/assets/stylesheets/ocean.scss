@@ -1,0 +1,203 @@
+//enhancement : le chemin du fichier materialize.scss est en dur ce qui posera problème lors des upgrade de materialize (idem dans _variables.scss)
+
+@charset "UTF-8";
+
+// Métier
+
+//override css form
+@import './form';
+
+
+//override css form
+@import './autocomplete';
+
+
+//animations et transitions
+@import './anim';
+
+//override css modal
+@import './modal';
+
+
+//ROBOTO FIREFOX
+@font-face {
+  font-family: 'Roboto';
+  src: url('../font/roboto/Roboto-Regular-webfont.woff') format('woff'),
+  url('../font/roboto/Roboto-Regular-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../font/roboto/Roboto-Bold-webfont.woff') format('woff'),
+  url('../font/roboto/Roboto-Bold-webfont.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../font/roboto/Roboto-Light-webfont.woff') format('woff'),
+  url('../font/roboto/Roboto-Light-webfont.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+/* icons */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url('../font/material-design-icons/Material-Design-Icons.woff2') format('woff2'),
+       local('Material Icons'), local('MaterialIcons-Regular'), url('../font/material-design-icons/Material-Design-Icons.woff') format('woff');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Footer collé en bas de l'écran
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+// Ajout de toasts collorés
+.toast.toast-error {
+  background-color: $error-color;
+  border-radius: 10px;
+}
+.toast.toast-success {
+  background-color: $success-color;
+  border-radius: 10px;
+}
+// Amélioration de l'affichage du filtre NG-DataTable
+label > input[type="search"] {
+  height: 2em;
+  margin-bottom: 5px;
+}
+
+// Floating wait indicator
+.waiting-popup {
+  position: fixed;
+  left: 50%;
+  top: 40%;
+  z-index: 9999;
+}
+.waiting-wrapper {
+  position: relative;
+  left: -50%;
+  z-index: 9999;
+  background: white;
+  border-radius: 5px;
+  padding: 1em;
+}
+.waiting-msg {
+  float: right;
+  padding: 0 1em 0 1em;
+}
+
+//les fleches de tri sont places à gauche du libellé
+table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled {
+  background-position: center left !important;
+}
+
+// Colonnes contenant un bouton
+.col_btn {
+  text-align: center;
+  width: 5em;
+}
+.col_btn > .btn {
+  opacity: 0;
+}
+tr:hover > .col_btn > .btn {
+  opacity: 100;
+}
+
+// Colors for common texts
+.warning-text {
+  color: $error-color;
+}
+.error-text {
+  color: $error-color;
+}
+
+// A documenter
+.icone_clickable{
+  cursor: pointer;
+}
+
+// Bandeau de recherche sur une seule ligne
+.ocean-search-band {
+  position: absolute;
+  z-index: 500;
+}
+
+// Bandeaux du haut et du bas (header & footer)
+.page-footer {
+  background: linear-gradient(to right, $band-color2, $band-color-neutral);
+}
+.footer-copyright {
+  background: linear-gradient(to right, $band-color1, $band-color-neutral);
+}
+.upper-band {
+  background: linear-gradient(to left, $band-color1, $band-color-neutral);
+}
+nav>.upper-band>ul>li>a {
+  color: black;
+  text-shadow: 0 0 10px white;
+}
+nav .brand-logo.left {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+@media only screen and (min-width: 601px) {
+  nav>.upper-band>ul>li .dropdown-content {
+    top: 64px !important;
+  }
+}
+
+// Taille du label "Recherche"
+.ocean-search-band a label {
+  font-size: 1rem;
+}
+
+// Style du breadcrumb
+.ocean_breadcrumb {
+  height: 48px;
+  line-height: 48px;
+  opacity: 0.6;
+}
+
+.icone-style{
+  top: 4px;
+  position: relative;
+}
+
+// Surcharge ngAnimate : correction probleme ng-show/ng-if affichage
+.ng-hide.ng-hide-animate{
+  display: none !important;
+}
+.ng-animate.ng-leave{
+  display: none !important;
+}

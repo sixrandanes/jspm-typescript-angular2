@@ -1,0 +1,52 @@
+/*
+ * Transition entre les pages : slide in/out
+ */
+body {
+  overflow-x: hidden;
+}
+.slide.ng-enter, .slide.ng-leave {
+  transition: 500ms ease-in-out all;
+
+  position: absolute;
+  display: block;
+  width: 90%;
+  max-width: inherit;
+}
+
+.slide.ng-enter {
+  left: 110%;
+}
+.slide.ng-enter.ng-enter-active {
+  left: 5%; // width * (100-90) / 2;
+}
+
+.slide.ng-leave {
+  left: 5%; // width * (100-90) / 2;
+}
+.slide.ng-leave.ng-leave-active{
+  left: -110%;
+}
+
+@media only screen and (min-width: 601px) {
+  .slide.ng-enter, .slide.ng-leave {
+    width: 85%;
+  }
+  .slide.ng-enter.ng-enter-active {
+    left: 7.5%; // width * (100-85) / 2;
+  }
+  .slide.ng-leave {
+    left: 7.5%; // width * (100-85) / 2;
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  .slide.ng-enter, .slide.ng-leave {
+    width: 70%;
+  }
+  .slide.ng-enter.ng-enter-active {
+    left: 15%; // width * (100-70) / 2;
+  }
+  .slide.ng-leave {
+    left: 15%; // width * (100-70) / 2;
+  }
+}
