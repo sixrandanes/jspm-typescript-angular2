@@ -4,7 +4,13 @@ SystemJS.config({
     "npm:*.json",
     "github:*/*.json"
   ],
-
+  transpiler: "ts",
+  typescriptOptions: {
+    module: "system",
+    noImplicitAny: true,
+    typeCheck: "strict",                // also accepts "strict"
+    tsconfig: true               // also accepts a path
+  },
   map: {
     "angular2": "npm:angular2@2.0.0-beta.8",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
@@ -29,8 +35,10 @@ SystemJS.config({
     "vm": "github:jspm/nodelibs-vm@0.2.0-alpha",
     "zone.js": "npm:zone.js@0.5.15"
   },
-
   packages: {
+    "app": {
+      "defaultExtension": "ts"
+    },
     "github:frankwallis/plugin-typescript@4.0.2": {
       "map": {
         "typescript": "npm:typescript@1.8.7"
