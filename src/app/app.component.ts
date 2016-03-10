@@ -1,9 +1,9 @@
 /**
  * Created by Sylvain on 07/03/2016.
  */
-import { Component }       from 'angular2/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
-import {HeroService} from "./hero/hero.service";
+import { Component, provide }       from 'angular2/core';
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS,   LocationStrategy,
+    HashLocationStrategy } from 'angular2/router';
 import { UtilisateursListComponent } from './components/utilisateurs/utilisateurs-list.component';
 import { AchatsListComponent } from './components/achats/achats-list.component';
 import { ProduitsListComponent } from './components/produits/produits-list.component';
@@ -22,7 +22,7 @@ import { ProduitsListComponent } from './components/produits/produits-list.compo
     directives: [ROUTER_DIRECTIVES],
     providers: [
         ROUTER_PROVIDERS,
-        HeroService
+        provide(LocationStrategy, {useClass: HashLocationStrategy})
     ]
 })
 @RouteConfig([
