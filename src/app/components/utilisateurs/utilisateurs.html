@@ -1,34 +1,15 @@
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
     <thead>
     <tr>
+        <th>ID</th>
         <th class="mdl-data-table__cell--non-numeric">Nom</th>
-        <th>Prenom</th>
-        <th>Photo</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td class="mdl-data-table__cell--non-numeric">Toto</td>
-        <td>test</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td class="mdl-data-table__cell--non-numeric">Toto2</td>
-        <td>test</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td class="mdl-data-table__cell--non-numeric">Toto3</td>
-        <td>test</td>
-        <td></td>
+    <tr *ngFor="#hero of heroes" (click)="gotoDetail(hero)">
+        <td class="mdl-data-table__cell--non-numeric">{{hero.name}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{hero.id}}</td>
     </tr>
     </tbody>
 </table>
 
-<div class="grid grid-pad">
-    <div *ngFor="#hero of heroes" (click)="gotoDetail(hero)" class="col-1-4" >
-        <div class="module hero">
-            <h4>{{hero.name}}</h4>
-        </div>
-    </div>
-</div>
