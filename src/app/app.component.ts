@@ -4,14 +4,12 @@
 import { Component, provide }       from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS,   LocationStrategy,
     HashLocationStrategy } from 'angular2/router';
-import { UtilisateursListComponent } from './components/utilisateurs/utilisateurs-list.component';
-import { AchatsListComponent } from './components/achats/achats-list.component';
-import { ProduitsListComponent } from './components/produits/produits-list.component';
+
+import {APP_ROUTES} from './app.routes';
 
 @Component({
     selector: 'my-app',
     template: `
-    <h1>{{title}}</h1>
     <nav>
       <a [routerLink]="['Utilisateurs']">Utilisateurs</a>
       <a [routerLink]="['Produits']">Produits</a>
@@ -25,24 +23,7 @@ import { ProduitsListComponent } from './components/produits/produits-list.compo
         provide(LocationStrategy, {useClass: HashLocationStrategy})
     ]
 })
-@RouteConfig([
-    {
-        path: '/utilisateurs',
-        name: 'Utilisateurs',
-        component: UtilisateursListComponent,
-        useAsDefault: true
-    },
-    {
-        path: '/produits',
-        name: 'Produits',
-        component: ProduitsListComponent
-    },
-    {
-        path: '/achats',
-        name: 'Achats',
-        component: AchatsListComponent
-    }
-])
+@RouteConfig(APP_ROUTES)
 export class AppComponent {
-    title = 'Tour of Heroes';
+
 }
