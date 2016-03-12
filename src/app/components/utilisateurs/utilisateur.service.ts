@@ -1,20 +1,34 @@
-import {Injectable} from 'angular2/core';
+import { Injectable } from 'angular2/core';
 
-export class Crisis {
-constructor(public id: number, public name: string) { }
-}
 @Injectable()
-export class CrisisService {
-getCrises() { return crisesPromise; }
-getCrisis(id: number | string) {
-return crisesPromise
-.then(crises => crises.filter(c => c.id === +id)[0]);
+export class UtilisateurService {
+
+    getUtilisateurs() {
+        const test = [
+            {"id": 11, "name": "Mr. Nice"},
+            {"id": 12, "name": "Narco"},
+            {"id": 13, "name": "Bombasto"},
+            {"id": 14, "name": "Celeritas"},
+            {"id": 15, "name": "Magneta"},
+            {"id": 16, "name": "RubberMan"},
+            {"id": 17, "name": "Dynama"},
+            {"id": 18, "name": "Dr IQ"},
+            {"id": 19, "name": "Magma"},
+            {"id": 20, "name": "Tornado"}
+        ];
+        return Promise.resolve(test);
+    }
+
+    // See the "Take it slow" appendix
+    /*  getHeroesSlowly() {
+     return new Promise<Hero[]>(resolve =>
+     setTimeout(()=>resolve(HEROES), 2000) // 2 seconds
+     );
+     }
+
+     getHero(id: number) {
+     return Promise.resolve(HEROES).then(
+     heroes => heroes.filter(hero => hero.id === id)[0]
+     );
+     }*/
 }
-}
-var crises = [
-new Crisis(1, 'Dragon Burning Cities'),
-new Crisis(2, 'Sky Rains Great White Sharks'),
-new Crisis(3, 'Giant Asteroid Heading For Earth'),
-new Crisis(4, 'Procrastinators Meeting Delayed Again'),
-];
-var crisesPromise = Promise.resolve(crises);
