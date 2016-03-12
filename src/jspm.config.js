@@ -13,7 +13,7 @@ SystemJS.config({
     tsconfig: true               // also accepts a path
   },
   map: {
-    "angular2": "npm:angular2@2.0.0-beta.8",
+    "angular2": "npm:angular2@2.0.0-beta.9",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
     "child_process": "github:jspm/nodelibs-child_process@0.2.0-alpha",
     "constants": "github:jspm/nodelibs-constants@0.2.0-alpha",
