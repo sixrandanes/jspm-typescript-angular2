@@ -7,6 +7,7 @@ SystemJS.config({
   transpiler: "ts",
   typescriptOptions: {
     module: "system",
+    emitDecoratorMetadata: true,
     noImplicitAny: true,
     typeCheck: "strict",                // also accepts "strict"
     tsconfig: true               // also accepts a path
