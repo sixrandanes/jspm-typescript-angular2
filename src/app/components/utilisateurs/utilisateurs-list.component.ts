@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {OnInit, Component} from 'angular2/core';
 import { UtilisateurService } from './utilisateur.service';
 import {Utilisateur} from "./utilisateur";
 
@@ -11,15 +11,18 @@ import {Utilisateur} from "./utilisateur";
   providers: [UtilisateurService],
   pipes: []
 })
-export class UtilisateursListComponent {
+export class UtilisateursListComponent implements OnInit {
 
   heroes: Utilisateur[] = [];
 
   constructor(
       private _heroService: UtilisateurService) { }
 
-  getUtilisateurs() {
+  ngOnInit() {
     this._heroService.getUtilisateurs().then(heroes => this.heroes = heroes);
   }
 
+  getUtilisateurs() {
+    this._heroService.getUtilisateurs().then(heroes => this.heroes = heroes);
+  }
 }
