@@ -202,6 +202,7 @@
     },
     "dependencies": {
       "angular2": "npm:angular2@^2.0.0-beta.9",
+      "flexboxgrid": "github:kristoferjoseph/flexboxgrid@^6.3.0",
       "material-design-lite": "github:google/material-design-lite@^1.1.2",
       "ts": "github:frankwallis/plugin-typescript@^4.0.2",
       "reflect-metadata": "npm:reflect-metadata@^0.1.3",

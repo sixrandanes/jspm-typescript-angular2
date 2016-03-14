@@ -30,6 +30,7 @@ SystemJS.config({
     "es6-promise": "npm:es6-promise@3.1.2",
     "es6-shim": "npm:es6-shim@0.33.13",
     "events": "github:jspm/nodelibs-events@0.2.0-alpha",
+    "flexboxgrid": "github:kristoferjoseph/flexboxgrid@6.3.0",
     "fs": "github:jspm/nodelibs-fs@0.2.0-alpha",
     "image": "github:systemjs/plugin-image@0.1.0",
     "json": "github:systemjs/plugin-json@0.1.0",
