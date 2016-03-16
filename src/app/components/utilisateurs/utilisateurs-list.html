@@ -1,0 +1,28 @@
+<h4>Liste des utilisateurs</h4>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th class="mdl-data-table__cell--non-numeric">Nom</th>
+        <th class="mdl-data-table__cell--non-numeric"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="#hero of heroes">
+        <td class="mdl-data-table__cell--non-numeric">{{hero.name}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{hero.id}}
+        <td class="mdl-data-table__cell--non-numeric">
+        <div>
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" (click)="updateUtilisateur(hero)">
+        <i class="material-icons">add</i>
+    </button>
+        </div>
+    </td>
+    </tr>
+    </tbody>
+</table>
+
+<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" (click)="addUtilisateur()">
+    <i class="material-icons">add</i>
+</button>
+

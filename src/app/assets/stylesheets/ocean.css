@@ -372,7 +372,6 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
-@import url(../../../jspm_packages/github/kristoferjoseph/flexboxgrid@6.3.0/css/flexboxgrid.min.css);
 html {
   color: rgba(0,0,0, 0.87);
   font-size: 1em;

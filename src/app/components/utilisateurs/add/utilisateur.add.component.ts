@@ -1,18 +1,18 @@
 import {OnInit, Component} from 'angular2/core';
-import { UtilisateurService } from './utilisateur.service';
-import {Utilisateur} from "./utilisateur";
+import { UtilisateurService } from './../utilisateur.service.ts';
+import {Utilisateur} from "./../utilisateur";
 import { Router } from 'angular2/router';
 
 
 @Component({
-  selector: 'utilisateurs',
-  templateUrl: 'app/components/utilisateurs/utilisateurs-list.html',
-  styleUrls: ['app/components/utilisateurs/utilisateurs-list.css'],
+  selector: 'utilisateurs-add',
+  templateUrl: 'app/components/utilisateurs/add/utilisateur.add.html',
+  styleUrls: ['app/components/utilisateurs/add/utilisateur.add.css'],
   directives: [],
   providers: [UtilisateurService],
   pipes: []
 })
-export class UtilisateursListComponent implements OnInit {
+export class UtilisateurAddComponent implements OnInit {
 
   heroes: Utilisateur[] = [];
 
@@ -28,6 +28,6 @@ export class UtilisateursListComponent implements OnInit {
   }
 
   addUtilisateur() {
-    this._router.navigate(['UtilisateursNew']);
+    this._router.navigate(['HeroDetail']);
   }
 }

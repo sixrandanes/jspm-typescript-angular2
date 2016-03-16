@@ -11,9 +11,9 @@
                 this.emit('end');
             };
         },
-        htmlFiles: ['./src/app/**/*.html', '!./src/app/jspm_packages/**', '!./src/app/assets/**'],
-        jsFiles: ['./src/app/**/**.js', '!./src/app/jspm_packages/**', '!./src/app/assets/**'],
-        tsFiles: ['./src/app/**/**.ts', '!./src/app/jspm_packages/**', '!./src/app/assets/**'],
+        htmlFiles: ['./src/app/**/*.html', '!./src/jspm_packages/**', '!./src/app/assets/**'],
+        jsFiles: ['./src/app/**/**.js', '!./src/jspm_packages/**', '!./src/app/assets/**'],
+        tsFiles: ['./src/app/**/**.ts', '!./src/jspm_packages/**', '!./src/app/assets/**'],
         scssFiles: ['./src/app/assets/stylesheets/**/*.scss'],
         cssFiles: ['./src/app/assets/stylesheets/**/**.css'],
         fontFiles: ['./src/app/assets/font/**'],
