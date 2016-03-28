@@ -205,13 +205,13 @@
       "lib": "src"
     },
     "dependencies": {
-      "angular2": "npm:angular2@^2.0.0-beta.9",
+      "angular2": "npm:angular2@^2.0.0-beta.12",
       "flexboxgrid": "github:kristoferjoseph/flexboxgrid@^6.3.0",
       "material-design-lite": "github:google/material-design-lite@^1.1.2",
       "ts": "github:frankwallis/plugin-typescript@^4.0.2",
       "reflect-metadata": "npm:reflect-metadata@^0.1.3",
       "text": "github:systemjs/plugin-text@0.0.2",
-      "zone.js": "npm:zone.js@^0.5.15",
+      "zone.js": "npm:zone.js@^0.6.6",
       "image": "github:systemjs/plugin-image@^0.1.0",
       "json": "github:systemjs/plugin-json@0.1.0"
     },
@@ -1542,6 +1542,21 @@
           "path": "@empty",
           "process": "@empty",
           "readline": "@empty"
+        }
+      },
+      "npm:zone.js@0.5.15": {
+        "main": "dist/zone.js",
+        "directories": {},
+        "jspmNodeConversion": false,
+        "dependencies": {},
+        "meta": {
+          "dist/zone.js": {
+            "exports": [
+              "Zone",
+              "zone"
+            ],
+            "format": "global"
+          }
         }
       }
     }

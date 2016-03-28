@@ -1,7 +1,6 @@
-import {OnInit, Component} from 'angular2/core';
+import {Component} from 'angular2/core';
 import { UtilisateurService } from './../utilisateur.service.ts';
-import {Utilisateur} from "./../utilisateur";
-import { Router } from 'angular2/router';
+import { ControlGroup, Control, FormBuilder, Validators} from 'angular2/common';
 
 
 @Component({
@@ -12,22 +11,21 @@ import { Router } from 'angular2/router';
   providers: [UtilisateurService],
   pipes: []
 })
-export class UtilisateurAddComponent implements OnInit {
+export class UtilisateurAddComponent{
 
-  heroes: Utilisateur[] = [];
+  form: ControlGroup;
+  firstName: Control = new Control("", Validators.required);
 
-  constructor(private _router: Router,
-      private _heroService: UtilisateurService) { }
-
-  ngOnInit() {
-    this._heroService.getUtilisateurs().then(heroes => this.heroes = heroes);
+  constructor(fb: FormBuilder, private _userService: UtilisateurService) {
+    this.form = fb.group({
+      "firstName": this.firstName,
+      "password":["", Validators.required]
+    });
   }
 
-  getUtilisateurs() {
-    this._heroService.getUtilisateurs().then(heroes => this.heroes = heroes);
-  }
-
-  addUtilisateur() {
-    this._router.navigate(['HeroDetail']);
+  onSubmitModelBased() {
+    this._userService.addUtilisateur(this.form);
+    console.log("model-based form submitted");
+    console.log(this.form);
   }
 }
