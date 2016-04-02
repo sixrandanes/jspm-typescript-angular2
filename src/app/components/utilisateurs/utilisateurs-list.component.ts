@@ -14,17 +14,17 @@ import { Router } from 'angular2/router';
 })
 export class UtilisateursListComponent implements OnInit {
 
+  errorMessage: string;
   heroes: Utilisateur[] = [];
 
   constructor(private _router: Router,
       private _heroService: UtilisateurService) { }
 
   ngOnInit() {
-    this._heroService.getUtilisateurs().then(heroes => this.heroes = heroes);
-  }
-
-  getUtilisateurs() {
-    this._heroService.getUtilisateurs().then(heroes => this.heroes = heroes);
+    this._heroService.getUtilisateurs()
+        .subscribe(
+          res => this.heroes = res._embedded.utilisateurs,
+          error =>  this.errorMessage = <any>error);
   }
 
   addUtilisateur() {

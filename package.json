@@ -100,6 +100,7 @@
     "gulp-sequence": "0.4.1",
     "gulp-sonar": "2.0.0",
     "gulp-sourcemaps": "1.6.0",
+    "gulp-tslint": "^4.3.4",
     "gulp-typescript": "^2.11.0",
     "gulp-uglify": "1.5.1",
     "gulp-util": "3.0.7",
@@ -120,11 +121,8 @@
     "jodid25519": "^1.0.2",
     "jpegtran-bin": "^0.2.8",
     "jsbn": "^0.1.0",
-    "jscs": "2.7.0",
-    "jshint": "^2.8.0",
-    "jshint-stylish": "2.1.0",
     "jsonfile": "^2.2.3",
-    "jspm": "^0.17.0-beta.11",
+    "jspm": "^0.17.0-beta.12",
     "karma": "0.13.19",
     "karma-chrome-launcher": "0.2.2",
     "karma-coverage": "0.5.3",
@@ -173,7 +171,6 @@
     "requires-port": "0.0.1",
     "rsyncwrapper": "0.4.3",
     "run-sequence": "1.1.5",
-    "rxjs": "^5.0.0-beta.2",
     "semver": "4.3.6",
     "sequencify": "0.0.7",
     "sntp": "0.2.4",
@@ -182,6 +179,7 @@
     "tar": "^0.1.20",
     "throttleit": "0.0.2",
     "tiny-lr": "0.2.1",
+    "tslint": "^3.6.0",
     "tweetnacl": "^0.13.3",
     "typescript": "^1.7.5",
     "typings": "^0.6.8",
@@ -195,8 +193,7 @@
     "void-elements": "^2.0.1",
     "wiredep": "3.0.0",
     "wrench": "1.5.8",
-    "xtend": "^4.0.1",
-    "zone.js": "^0.5.15"
+    "xtend": "^4.0.1"
   },
   "jspm": {
     "name": "ocean",
@@ -209,7 +206,7 @@
       "flexboxgrid": "github:kristoferjoseph/flexboxgrid@^6.3.0",
       "material-design-lite": "github:google/material-design-lite@^1.1.2",
       "ts": "github:frankwallis/plugin-typescript@^4.0.2",
-      "reflect-metadata": "npm:reflect-metadata@^0.1.3",
+      "reflect-metadata": "npm:reflect-metadata@0.1.2",
       "text": "github:systemjs/plugin-text@0.0.2",
       "zone.js": "npm:zone.js@^0.6.6",
       "image": "github:systemjs/plugin-image@^0.1.0",
@@ -223,7 +220,7 @@
       "constants": "github:jspm/nodelibs-constants@^0.2.0-alpha",
       "crypto": "github:jspm/nodelibs-crypto@^0.2.0-alpha",
       "es6-promise": "npm:es6-promise@^3.0.2",
-      "es6-shim": "npm:es6-shim@^0.33.3",
+      "es6-shim": "npm:es6-shim@^0.35.0",
       "events": "github:jspm/nodelibs-events@^0.2.0-alpha",
       "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
       "path": "github:jspm/nodelibs-path@^0.2.0-alpha",
@@ -236,7 +233,7 @@
       "vm": "github:jspm/nodelibs-vm@^0.2.0-alpha"
     },
     "overrides": {
-      "npm:angular2@2.0.0-beta.9": {
+      "npm:angular2@2.0.0-beta.13": {
         "main": "index",
         "format": "cjs",
         "meta": {
@@ -1527,12 +1524,12 @@
           "test.js"
         ]
       },
-      "npm:reflect-metadata@0.1.3": {
+      "npm:reflect-metadata@0.1.2": {
         "map": {
           "crypto": "@empty"
         }
       },
-      "npm:typescript@1.8.7": {
+      "npm:typescript@1.8.9": {
         "browser": {},
         "map": {
           "buffer": "@empty",
@@ -1542,21 +1539,6 @@
           "path": "@empty",
           "process": "@empty",
           "readline": "@empty"
-        }
-      },
-      "npm:zone.js@0.5.15": {
-        "main": "dist/zone.js",
-        "directories": {},
-        "jspmNodeConversion": false,
-        "dependencies": {},
-        "meta": {
-          "dist/zone.js": {
-            "exports": [
-              "Zone",
-              "zone"
-            ],
-            "format": "global"
-          }
         }
       }
     }

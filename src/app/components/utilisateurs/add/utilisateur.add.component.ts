@@ -24,8 +24,7 @@ export class UtilisateurAddComponent{
   }
 
   onSubmitModelBased() {
-    this._userService.addUtilisateur(this.form);
-    console.log("model-based form submitted");
-    console.log(this.form);
+    this._userService.addUtilisateur(this.form)
+        .subscribe();
   }
 }

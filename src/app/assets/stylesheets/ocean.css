@@ -8570,8 +8570,8 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
   justify-content: space-between;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   will-change: transform;
-  -webkit-transform: translate(-50%, 80px);
-  transform: translate(-50%, 80px);
+  -webkit-transform: translate(0, 80px);
+  transform: translate(0, 80px);
   -webkit-transition: -webkit-transform 0.25s cubic-bezier(0.4, 0, 1, 1);
   transition: -webkit-transform 0.25s cubic-bezier(0.4, 0, 1, 1);
   transition: transform 0.25s cubic-bezier(0.4, 0, 1, 1);
@@ -8587,15 +8587,21 @@ _:-ms-input-placeholder, :root .mdl-slider.mdl-slider.is-upgraded {
     .mdl-snackbar {
       min-width: 288px;
       max-width: 568px;
-      border-radius: 2px; } }
+      border-radius: 2px;
+      -webkit-transform: translate(-50%, 80px);
+      transform: translate(-50%, 80px); } }
   .mdl-snackbar--active {
-    -webkit-transform: translate(-50%, 0);
-    transform: translate(-50%, 0);
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
     pointer-events: auto;
     -webkit-transition: -webkit-transform 0.25s cubic-bezier(0, 0, 0.2, 1);
     transition: -webkit-transform 0.25s cubic-bezier(0, 0, 0.2, 1);
     transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1);
     transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 0.25s cubic-bezier(0, 0, 0.2, 1); }
+    @media (min-width: 480px) {
+      .mdl-snackbar--active {
+        -webkit-transform: translate(-50%, 0);
+        transform: translate(-50%, 0); } }
   .mdl-snackbar__text {
     padding: 14px 12px 14px 24px;
     vertical-align: middle;

@@ -1,6 +1,7 @@
 import { Injectable } from 'angular2/core';
 import {ControlGroup} from "angular2/common";
-import {Http, Headers, Response, RequestOptions} from 'angular2/http';
+import {Http, Headers, RequestOptions} from 'angular2/http';
+import 'rxjs/Rx';
 
 
 @Injectable()
@@ -9,19 +10,9 @@ export class UtilisateurService {
     constructor(public http: Http) {}
 
     getUtilisateurs() {
-        const test = [
-            {"id": 11, "name": "Mr. Nice"},
-            {"id": 12, "name": "Narco"},
-            {"id": 13, "name": "Bombasto"},
-            {"id": 14, "name": "Celeritas"},
-            {"id": 15, "name": "Magneta"},
-            {"id": 16, "name": "RubberMan"},
-            {"id": 17, "name": "Dynama"},
-            {"id": 18, "name": "Dr IQ"},
-            {"id": 19, "name": "Magma"},
-            {"id": 20, "name": "Tornado"}
-        ];
-        return Promise.resolve(test);
+        return this.http.get('http://localhost:8083/utilisateurs')
+            .map(res =>  res.json())
+            .catch(this.handleError);
     }
 
     addUtilisateur(form:ControlGroup) {
@@ -31,13 +22,7 @@ export class UtilisateurService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-
-        return this.http.post('http://localhost:8080/users', lul, options)
-            .subscribe(res => {
-               /// this.comments = res.json();
-            });
-         //   .toPromise()
-         //   .catch(this.handleError);
+        return this.http.post('http://localhost:8083/utilisateurs', lul, options);
     }
 
     private handleError (error: any) {
@@ -46,17 +31,5 @@ export class UtilisateurService {
         console.error(error);
         return Promise.reject(error.message || error.json().error || 'Server error');
     }
-
-    // See the "Take it slow" appendix
-    /*  getHeroesSlowly() {
-     return new Promise<Hero[]>(resolve =>
-     setTimeout(()=>resolve(HEROES), 2000) // 2 seconds
-     );
-     }
-
-     getHero(id: number) {
-     return Promise.resolve(HEROES).then(
-     heroes => heroes.filter(hero => hero.id === id)[0]
-     );
-     }*/
+    
 }
