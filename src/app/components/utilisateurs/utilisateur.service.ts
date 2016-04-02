@@ -1,5 +1,5 @@
 import { Injectable } from 'angular2/core';
-import {ControlGroup} from "angular2/common";
+import {ControlGroup} from 'angular2/common';
 import {Http, Headers, RequestOptions} from 'angular2/http';
 import 'rxjs/Rx';
 
@@ -15,13 +15,11 @@ export class UtilisateurService {
             .catch(this.handleError);
     }
 
-    addUtilisateur(form:ControlGroup) {
-
-        const test = {"username": form.value.firstName, "password":form.value.password};
+    addUtilisateur(form: ControlGroup) {
+        const test = {'username': form.value.firstName, 'password': form.value.password};
         const lul = JSON.stringify(test);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-
         return this.http.post('http://localhost:8083/utilisateurs', lul, options);
     }
 
@@ -31,5 +29,4 @@ export class UtilisateurService {
         console.error(error);
         return Promise.reject(error.message || error.json().error || 'Server error');
     }
-    
 }

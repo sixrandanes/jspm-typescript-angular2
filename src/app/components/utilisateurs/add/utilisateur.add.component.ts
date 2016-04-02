@@ -4,27 +4,27 @@ import { ControlGroup, Control, FormBuilder, Validators} from 'angular2/common';
 
 
 @Component({
-  selector: 'utilisateurs-add',
+  selector: 'sg-utilisateurs-add',
   templateUrl: 'app/components/utilisateurs/add/utilisateur.add.html',
   styleUrls: ['app/components/utilisateurs/add/utilisateur.add.css'],
   directives: [],
   providers: [UtilisateurService],
   pipes: []
 })
-export class UtilisateurAddComponent{
+export class UtilisateurAddComponent {
 
   form: ControlGroup;
-  firstName: Control = new Control("", Validators.required);
+  firstName: Control = new Control('', Validators.required);
 
-  constructor(fb: FormBuilder, private _userService: UtilisateurService) {
+  constructor(fb: FormBuilder, private userService: UtilisateurService) {
     this.form = fb.group({
-      "firstName": this.firstName,
-      "password":["", Validators.required]
+      'firstName': this.firstName,
+      'password': ['', Validators.required]
     });
   }
 
   onSubmitModelBased() {
-    this._userService.addUtilisateur(this.form)
+    this.userService.addUtilisateur(this.form)
         .subscribe();
   }
 }

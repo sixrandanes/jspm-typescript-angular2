@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 
 
 @Component({
-    selector: 'produits',
+    selector: 'sg-produits',
     templateUrl: 'app/components/produits/produits.html',
     styleUrls: ['app/components/produits/produits.css'],
     directives: [],

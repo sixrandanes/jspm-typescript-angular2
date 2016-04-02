@@ -49,6 +49,15 @@
                 });
         };
 
+        pipes.tsLinters = function () {
+            return gulp.src(['./' + options.src + '/**/**.ts', '!./app/jspm_packages/**',  '!./app/assets/**'])
+                .pipe($.tslint())
+                .pipe($.tslint.report("verbose", {
+                    emitError: false
+                }))
+
+        };
+
         pipes.cssLinters = function () {
             return gulp.src('./' + options.src + '/**/**.scss')
                 .pipe($.scssLint({

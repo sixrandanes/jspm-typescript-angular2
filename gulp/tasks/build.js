@@ -22,10 +22,10 @@
             return gulpSequence(['ts', 'sass'])(cb);
         };
 
-      /*  pipes.tsWatchers = function () {
+       pipes.tsWatchers = function () {
             //return gulpSequence('notifyLivereload')(cb);
-            return es.merge(pipes.jsLinters());
-        }*/
+            return es.merge(pipes.tsLinters());
+        }
 
         pipes.open = function (cb) {
             return gulp.src(options.src)
@@ -51,7 +51,7 @@
         gulp.task('clean', 'Vide le dossier de travail', pipes.cleanDev);
 
         gulp.task('watch', 'Lance les watchers sur les fichiers html, typescript et scss', function () {
-            //gulp.watch(options.tsFiles, ['tsWatcher']);
+            gulp.watch(options.tsFiles, ['tsWatcher']);
             gulp.watch(options.scssFiles, ['sassWatcher']);
             gulp.watch(options.htmlFiles, ['htmlWatcher']);
         });

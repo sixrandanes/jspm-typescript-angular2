@@ -8,8 +8,8 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS,   LocationStrategy,
 import {APP_ROUTES} from './app.routes';
 
 @Component({
-    selector: 'my-app',
-    templateUrl:'app/app.component.html',
+    selector: 'sg-my-app',
+    templateUrl: 'app/app.component.html',
     directives: [ROUTER_DIRECTIVES],
     providers: [
         ROUTER_PROVIDERS,
