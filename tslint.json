@@ -1,5 +1,5 @@
 {
-  "rulesDirectory": "node_modules/codelyzer/dist/src/",
+  "rulesDirectory": ["node_modules/codelyzer/dist/src/", "node_modules/tslint-eslint-rules/dist/rules"],
   "rules": {
     "directive-selector-name": [true, "camelCase"],
     "component-selector-name": [true, "kebab-case"],

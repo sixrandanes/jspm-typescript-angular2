@@ -182,6 +182,7 @@
     "throttleit": "0.0.2",
     "tiny-lr": "0.2.1",
     "tslint": "^3.7.0",
+    "tslint-eslint-rules": "^1.1.1",
     "tweetnacl": "^0.13.3",
     "typescript": "^1.7.5",
     "typings": "^0.6.8",
