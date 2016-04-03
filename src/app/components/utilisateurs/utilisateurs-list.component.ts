@@ -5,8 +5,6 @@ import { Router } from 'angular2/router';
 import {AgGridNg2} from 'ag-grid-ng2/main';
 import {GridOptions} from 'ag-grid/main';
 
-
-
 @Component({
   selector: 'sg-utilisateurs',
   templateUrl: 'app/components/utilisateurs/utilisateurs-list.html',
@@ -35,22 +33,19 @@ export class UtilisateursListComponent implements OnInit {
     this.heroService.getUtilisateurs()
         .subscribe(
             res =>  {this.rowData = res._embedded.utilisateurs.map( hero => {
-              hero.name=`${hero.firstName} ${hero.lastName}`;
-              hero.country= hero.pays.libelle;
-              hero.skills= hero.skill.map(skill => {return skill.libelle}).join(", ");
-              hero.mobile= hero.numero;
+              hero.name = `${hero.firstName} ${hero.lastName}`;
+              hero.country = hero.pays.libelle;
+              hero.skills = hero.skill.map(skill => {return skill.libelle; }).join(', ');
+              hero.mobile = hero.numero;
 
-              return hero;});},
+              return hero; }) ;},
             error =>  this.errorMessage = <any>error);
 
-
     this.gridOptions = <GridOptions>{};
-    //this.createRowData();n
+    // this.createRowData();n
     this.createColumnDefs();
     this.showGrid = true;
-
   }
-
 
   addUtilisateur() {
     this.router.navigate(['UtilisateursNew']);
@@ -63,9 +58,9 @@ export class UtilisateursListComponent implements OnInit {
         {
           headerName: 'Utilisateurs',
           children: [
-            {headerName: "Nom", field: "name",
+            {headerName: 'Nom', field: 'name',
               width: 150, pinned: true},
-            {headerName: "Pays", field: "country", width: 150,
+            {headerName: 'Pays', field: 'country', width: 150,
               cellRenderer: countryCellRenderer, pinned: true,
               filterParams: {cellRenderer: countryCellRenderer, cellHeight: 20}},
           ]
@@ -73,17 +68,17 @@ export class UtilisateursListComponent implements OnInit {
         {
           headerName: 'IT Skills',
           children: [
-            {headerName: "Skills", field: "skills", width: 125, suppressSorting: true},
-            {headerName: "Proficiency", field: "proficiency", width: 120,
+            {headerName: 'Skills', field: 'skills', width: 125, suppressSorting: true},
+            {headerName: 'Proficiency', field: 'proficiency', width: 120,
               cellRenderer: percentCellRenderer}
           ]
         },
         {
           headerName: 'Contact',
           children: [
-            {headerName: "Mobile", field: "mobile", width: 150, filter: 'text'},
-            {headerName: "Email", field: "email", width: 150, filter: 'text'},
-            {headerName: "Address", field: "address", width: 500, filter: 'text'}
+            {headerName: 'Mobile', field: 'mobile', width: 150, filter: 'text'},
+            {headerName: 'Email', field: 'email', width: 150, filter: 'text'},
+            {headerName: 'Address', field: 'address', width: 500, filter: 'text'}
           ]
         }
       ];
@@ -91,9 +86,9 @@ export class UtilisateursListComponent implements OnInit {
 
   private calculateRowCount() {
       if (this.gridOptions.api && this.rowData) {
-        var model = this.gridOptions.api.getModel();
-        var totalRows = this.rowData.length;
-        var processedRows = model.getRowCount();
+        const model = this.gridOptions.api.getModel();
+        const totalRows = this.rowData.length;
+        const processedRows = model.getRowCount();
         this.rowCount = processedRows.toLocaleString() + ' / ' + totalRows.toLocaleString();
       }
     }
@@ -158,32 +153,14 @@ export class UtilisateursListComponent implements OnInit {
 
   }
 
-  function skillsCellRenderer(params) {
-  var data = params.data;
-  var skills = [];
-
-  return skills.join(' ');
-}
-
   function countryCellRenderer(params) {
-  return params.value;
-}
-
-  function createRandomPhoneNumber() {
-  var result = '+';
-  for (var i = 0; i < 12; i++) {
-    result += Math.round(Math.random() * 10);
-    if (i === 2 || i === 5 || i === 8) {
-      result += ' ';
-    }
-  }
-  return result;
+    return params.value;
 }
 
   function percentCellRenderer(params) {
-  var value = params.value;
+  const value = params.value;
 
-  var eDivPercentBar = document.createElement('div');
+  const eDivPercentBar = document.createElement('div');
   eDivPercentBar.className = 'div-percent-bar';
   eDivPercentBar.style.width = value + '%';
   if (value < 20) {
@@ -194,14 +171,14 @@ export class UtilisateursListComponent implements OnInit {
     eDivPercentBar.style.backgroundColor = '#00A000';
   }
 
-  var eValue = document.createElement('div');
+  let eValue = document.createElement('div');
   eValue.className = 'div-percent-value';
   eValue.innerHTML = value + '%';
 
-  var eOuterDiv = document.createElement('div');
+  let eOuterDiv = document.createElement('div');
   eOuterDiv.className = 'div-outer-div';
-  //eOuterDiv.appendChild(eValue);
-  //eOuterDiv.appendChild(eDivPercentBar);
+  // eOuterDiv.appendChild(eValue);
+  // eOuterDiv.appendChild(eDivPercentBar);
 
   return eOuterDiv;
 }

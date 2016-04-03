@@ -1,16 +1,22 @@
 <section class="sample-app-content">
-    <h1>Model-based Form Example:</h1>
-    <form [ngFormModel]="form" (ngSubmit)="onSubmitModelBased()">
-        <p>
-            <label>First Name:</label>
-            <input type="text" required ngControl="firstName">
-        </p>
-        <p>
-            <label>Password:</label>
-            <input type="password" required ngControl="password">
-        </p>
-        <p>
-            <button type="submit" [disabled]="!form.valid">Submit</button>
-        </p>
+
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" (click)="retour()">
+        <i class="material-icons">keyboard_backspace</i>
+    </button>
+
+    <h3>Ajouter un utilisateur:</h3>
+    <form [ngFormModel]="userForm" (submit)="saveUser()">
+        <label for="name">Name</label>
+        <input ngControl="name" id="name" />
+        <control-messages control="name"></control-messages>
+
+        <label for="email">Email</label>
+        <input ngControl="email" id="email" />
+        <control-messages control="email"></control-messages>
+
+        <button type="submit" [disabled]="!userForm.valid">Ajouter un utilisateur</button>
     </form>
+
 </section>
+
+
