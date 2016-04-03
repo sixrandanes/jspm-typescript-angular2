@@ -21,7 +21,9 @@ SystemJS.config({
     "github:*/*.json"
   ],
   map: {
-    "angular2": "npm:angular2@2.0.0-beta.13",
+    "ag-grid": "npm:ag-grid@4.0.5",
+    "ag-grid-ng2": "npm:ag-grid-ng2@4.0.3",
+    "angular2": "npm:angular2@2.0.0-beta.12",
     "assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
     "child_process": "github:jspm/nodelibs-child_process@0.2.0-alpha",

@@ -1,4 +1,5 @@
 <h4>Liste des utilisateurs</h4>
+<!--
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
     <thead>
     <tr>
@@ -21,6 +22,53 @@
     </tr>
     </tbody>
 </table>
+-->
+
+
+<ag-grid-ng2 #agGrid style="width: 100%; height: 350px;" class="ag-fresh"
+
+             [gridOptions]="gridOptions"
+             [columnDefs]="columnDefs"
+             [showToolPanel]="showToolPanel"
+             [rowData]="rowData"
+
+             enableColResize
+             enableSorting
+             enableFilter
+             groupHeaders
+             suppressRowClickSelection
+             toolPanelSuppressGroups
+             toolPanelSuppressValues
+             debug
+             rowHeight="22"
+             rowSelection="multiple"
+
+             (modelUpdated)="onModelUpdated()"
+             (cellClicked)="onCellClicked($event)"
+             (cellDoubleClicked)="onCellDoubleClicked($event)"
+             (cellContextMenu)="onCellContextMenu($event)"
+             (cellValueChanged)="onCellValueChanged($event)"
+             (cellFocused)="onCellFocused($event)"
+             (rowSelected)="onRowSelected($event)"
+             (selectionChanged)="onSelectionChanged()"
+             (beforeFilterChanged)="onBeforeFilterChanged()"
+             (afterFilterChanged)="onAfterFilterChanged()"
+             (filterModified)="onFilterModified()"
+             (beforeSortChanged)="onBeforeSortChanged()"
+             (afterSortChanged)="onAfterSortChanged()"
+             (virtualRowRemoved)="onVirtualRowRemoved($event)"
+             (rowClicked)="onRowClicked($event)"
+             (ready)="onReady($event)"
+
+             (columnEverythingChanged)="onColumnEvent($event)"
+             (columnRowGroupChanged)="onColumnEvent($event)"
+             (columnValueChanged)="onColumnEvent($event)"
+             (columnMoved)="onColumnEvent($event)"
+             (columnVisible)="onColumnEvent($event)"
+             (columnGroupOpened)="onColumnEvent($event)"
+             (columnResized)="onColumnEvent($event)"
+             (columnPinnedCountChanged)="onColumnEvent($event)">
+</ag-grid-ng2>
 
 <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" (click)="addUtilisateur()">
     <i class="material-icons">add</i>
