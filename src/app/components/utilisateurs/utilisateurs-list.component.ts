@@ -28,17 +28,20 @@ export class UtilisateursListComponent implements OnInit {
 
   constructor(private router: Router,
       private heroService: UtilisateurService) {
-    this.gridOptions = <GridOptions>{};
-    this.createRowData();
-    this.createColumnDefs();
-    this.showGrid = true;
   }
 
   ngOnInit() {
     this.heroService.getUtilisateurs()
         .subscribe(
-          res => this.heroes = res._embedded.utilisateurs,
+          res =>  {this.rowData = res._embedded.utilisateurs.map( hero => {hero.name=hero.lastName; return hero;});},
           error =>  this.errorMessage = <any>error);
+
+
+    this.gridOptions = <GridOptions>{};
+    //this.createRowData();n
+    this.createColumnDefs();
+    this.showGrid = true;
+
   }
 
   addUtilisateur() {
@@ -72,7 +75,7 @@ export class UtilisateursListComponent implements OnInit {
         });
       }
 
-      this.rowData = rowData;
+      this.rowData = this.heroes.forEach(hero => {name:hero.firstName}) ;
     }
 
   private createColumnDefs() {
