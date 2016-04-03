@@ -15,6 +15,6 @@
     "target": "es5"
   },
   "exclude": [
-    "jspm_packages"
+    "src/jspm_packages", "node_modules"
   ]
 }

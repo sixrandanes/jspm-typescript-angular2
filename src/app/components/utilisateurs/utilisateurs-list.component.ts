@@ -4,7 +4,7 @@ import {Utilisateur} from './utilisateur';
 import { Router } from 'angular2/router';
 import {AgGridNg2} from 'ag-grid-ng2/main';
 import {GridOptions} from 'ag-grid/main';
-import RefData from './RefData';
+
 
 
 @Component({
@@ -20,6 +20,7 @@ export class UtilisateursListComponent implements OnInit {
   errorMessage: string;
   heroes: Utilisateur[] = [];
 
+
   private gridOptions: GridOptions;
   private showGrid: boolean;
   private rowData: any[];
@@ -33,8 +34,14 @@ export class UtilisateursListComponent implements OnInit {
   ngOnInit() {
     this.heroService.getUtilisateurs()
         .subscribe(
-          res =>  {this.rowData = res._embedded.utilisateurs.map( hero => {hero.name=hero.lastName; return hero;});},
-          error =>  this.errorMessage = <any>error);
+            res =>  {this.rowData = res._embedded.utilisateurs.map( hero => {
+              hero.name=`${hero.firstName} ${hero.lastName}`;
+              hero.country= hero.pays.libelle;
+              hero.skills= hero.skill.map(skill => {return skill.libelle}).join(", ");
+              hero.mobile= hero.numero;
+
+              return hero;});},
+            error =>  this.errorMessage = <any>error);
 
 
     this.gridOptions = <GridOptions>{};
@@ -44,50 +51,21 @@ export class UtilisateursListComponent implements OnInit {
 
   }
 
+
   addUtilisateur() {
     this.router.navigate(['UtilisateursNew']);
   }
-
-
-  private createRowData() {
-      var rowData: any[] = [];
-
-      for (var i = 0; i < 1000; i++) {
-        var countryData = RefData.countries[i % RefData.countries.length];
-        rowData.push({
-          name: RefData.firstNames[i % RefData.firstNames.length] + ' '
-          + RefData.lastNames[i % RefData.lastNames.length],
-          skills: {
-            android: Math.random() < 0.4,
-            html5: Math.random() < 0.4,
-            mac: Math.random() < 0.4,
-            windows: Math.random() < 0.4,
-            css: Math.random() < 0.4
-          },
-          address: RefData.addresses[i % RefData.addresses.length],
-          years: Math.round(Math.random() * 100),
-          proficiency: Math.round(Math.random() * 100),
-          country: countryData.country,
-          continent: countryData.continent,
-          language: countryData.language,
-          mobile: createRandomPhoneNumber(),
-          landline: createRandomPhoneNumber()
-        });
-      }
-
-      this.rowData = this.heroes.forEach(hero => {name:hero.firstName}) ;
-    }
 
   private createColumnDefs() {
       this.columnDefs = [
         {headerName: '#', width: 30, checkboxSelection: true, suppressSorting: true,
           suppressMenu: true, pinned: true},
         {
-          headerName: 'Employee',
+          headerName: 'Utilisateurs',
           children: [
-            {headerName: "Name", field: "name",
+            {headerName: "Nom", field: "name",
               width: 150, pinned: true},
-            {headerName: "Country", field: "country", width: 150,
+            {headerName: "Pays", field: "country", width: 150,
               cellRenderer: countryCellRenderer, pinned: true,
               filterParams: {cellRenderer: countryCellRenderer, cellHeight: 20}},
           ]
@@ -95,8 +73,7 @@ export class UtilisateursListComponent implements OnInit {
         {
           headerName: 'IT Skills',
           children: [
-            {headerName: "Skills", width: 125, suppressSorting: true,
-              cellRenderer: skillsCellRenderer},
+            {headerName: "Skills", field: "skills", width: 125, suppressSorting: true},
             {headerName: "Proficiency", field: "proficiency", width: 120,
               cellRenderer: percentCellRenderer}
           ]
@@ -105,7 +82,7 @@ export class UtilisateursListComponent implements OnInit {
           headerName: 'Contact',
           children: [
             {headerName: "Mobile", field: "mobile", width: 150, filter: 'text'},
-            {headerName: "Land-line", field: "landline", width: 150, filter: 'text'},
+            {headerName: "Email", field: "email", width: 150, filter: 'text'},
             {headerName: "Address", field: "address", width: 500, filter: 'text'}
           ]
         }
@@ -184,11 +161,7 @@ export class UtilisateursListComponent implements OnInit {
   function skillsCellRenderer(params) {
   var data = params.data;
   var skills = [];
-  RefData.IT_SKILLS.forEach(function (skill) {
-    if (data && data.skills && data.skills[skill]) {
-      skills.push(skill);
-    }
-  });
+
   return skills.join(' ');
 }
 
