@@ -23,7 +23,6 @@
         };
 
        pipes.tsWatchers = function () {
-            //return gulpSequence('notifyLivereload')(cb);
             return es.merge(pipes.tsLinters());
         }
 
