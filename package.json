@@ -1,11 +1,10 @@
 {
-  "name": "ocean",
+  "name": "jspm-typescript-angular2",
   "version": "0.0.1",
   "repository": {
-    "type": "git",
-    "url": "http://gitlab.prod.appli-gestion.nc/ffaive/ocean-front"
+    "type": "git"
   },
-  "description": "frontend de l'application ocean",
+  "description": "jspm-typescript-angular2",
   "main": "index.js",
   "devDependencies": {
     "archy": "^1.0.0",
@@ -198,7 +197,7 @@
     "xtend": "^4.0.1"
   },
   "jspm": {
-    "name": "ocean",
+    "name": "jspm-typescript-angular2",
     "directories": {
       "baseURL": "src",
       "lib": "src"
