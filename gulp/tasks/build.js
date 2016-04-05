@@ -55,7 +55,7 @@
             gulp.watch(options.htmlFiles, ['htmlWatcher']);
         });
 
-        //Js task
+        //ts task
         gulp.task('ts', 'watcher ts', pipes.tsWatchers);
 
 

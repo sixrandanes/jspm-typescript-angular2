@@ -25,7 +25,7 @@
         };
 
         //Linters task
-        gulp.task('jsLinters', 'Lance les linters jscs et jshint sur les fichiers javascript', pipes.jsLinters);
+        gulp.task('tsLinters', 'Lance le linter tslint sur les fichiers typescript', pipes.tsLinters);
 
         gulp.task('cssLinters', 'Lance le linter SCSS (nécessite ruby et scss-lint gem)', pipes.cssLinters);
 
