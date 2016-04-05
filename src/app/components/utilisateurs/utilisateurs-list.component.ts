@@ -8,7 +8,7 @@ import {GridOptions} from 'ag-grid/main';
 @Component({
   selector: 'sg-utilisateurs',
   templateUrl: 'app/components/utilisateurs/utilisateurs-list.html',
-  styleUrls: ['app/components/utilisateurs/utilisateurs-list.css'],
+  styleUrls: ['app/components/utilisateurs/_utilisateurs-list.scss'],
   directives: [AgGridNg2],
   providers: [UtilisateurService],
   pipes: []

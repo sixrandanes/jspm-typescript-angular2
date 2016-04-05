@@ -7,7 +7,7 @@ import { Router } from 'angular2/router';
 @Component({
   selector: 'sg-utilisateurs-add',
   templateUrl: 'app/components/utilisateurs/add/utilisateur.add.html',
-  styleUrls: ['app/components/utilisateurs/add/utilisateur.add.css'],
+  styleUrls: ['app/components/utilisateurs/add/_utilisateur.add.sass'],
   directives: [],
   providers: [UtilisateurService],
   pipes: []
