@@ -4,8 +4,8 @@ module.exports = (gulp, pipes, $, options) => {
 
   $.sequence.use(gulp);
 
-  pipes.delDist = cb => {
-    $.del([options.dist], cb);
+  pipes.delDist = (cb) => {
+    return $.del([options.dist], cb);
   };
 
   pipes.copyFonts = () => {
@@ -140,8 +140,8 @@ module.exports = (gulp, pipes, $, options) => {
                 .pipe(gulp.dest(options.dist));
   };
 
-  pipes.buildDist = cb => {
-    $.sequence('clean:dist',
+  pipes.buildDist = (cb) => {
+    return $.sequence('clean:dist',
         'images',
         'imagesJspm',
         'tinymce',
@@ -194,7 +194,7 @@ module.exports = (gulp, pipes, $, options) => {
     pipes.postProcessImagesJspm);
 
   gulp.task('dist', 'Créée le livrable destinée à la release', cb => {
-    pipes.buildDist(cb);
+    return pipes.buildDist(cb);
   });
 
   gulp.task('saveTemplate', 'Sauvegarde du fichier de dev', pipes.saveTemplate);
