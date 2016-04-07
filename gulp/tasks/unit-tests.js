@@ -1,7 +1,7 @@
 
 'use strict';
 
-let karma = require('karma');
+const karma = require('karma');
 
 module.exports = (gulp, pipes, $, options) => {
 
@@ -15,7 +15,7 @@ module.exports = (gulp, pipes, $, options) => {
   /**
     		  * Mise en conformité du fichier lcov.info
     		  */
-  let postprocessLCOV = () => {
+  const postprocessLCOV = () => {
     gulp.src('coverage/lcov.info')
 
     // avoir des chemins de la forme client/app/...
@@ -31,10 +31,10 @@ module.exports = (gulp, pipes, $, options) => {
   /**
    * Run test once and exit
    */
-  let Server = karma.Server;
+  const Server = karma.Server;
   pipes.test = () => {
     new Server({
-      configFile: __dirname + '/../../karma.config.js',
+      configFile: `${__dirname}/../../karma.config.js`,
       singleRun: true,
       autoWatch: false,
       browsers: ['Firefox', 'PhantomJS', 'Chrome'],
@@ -50,7 +50,7 @@ module.exports = (gulp, pipes, $, options) => {
   gulp.task('tdd', `Lances les tests karma à la sauvegarde sur les navigateurs Firefox, Chrome et
   PhantomJS`, done => {
     new Server({
-      configFile: __dirname + '/../../karma.config.js',
+      configFile: `${__dirname}/../../karma.config.js`,
       autoWatch: true,
       singleRun: false,
       colors: true,

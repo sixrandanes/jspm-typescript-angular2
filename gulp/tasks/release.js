@@ -1,21 +1,21 @@
 'use strict';
 
-let gulp = require('gulp-param')(require('gulp'), process.argv);
-let eventStream = require('event-stream');
-let runSequence = require('run-sequence');
-let fs = require('fs');
-let paths = gulp.paths;
+const gulp = require('gulp-param')(require('gulp'), process.argv);
+const eventStream = require('event-stream');
+const runSequence = require('run-sequence');
+const fs = require('fs');
+const paths = gulp.paths;
 
 module.exports = (gulp, pipes, $, options) => {
 
   function tagVersion() {
       // you're going to receive Vinyl files as chunks
       function transform(file, cb) {
-        let json = JSON.parse(file.contents.toString());
-        let version = json.version;
-        let tag = 'v' + version;
-        $.util.log('Tagging as: ' + $.util.colors.yellow(tag));
-        $.git.tag(tag, 'tagging as ' + tag);
+        const json = JSON.parse(file.contents.toString());
+        const version = json.version;
+        const tag = `v${version}`;
+        $.util.log(`Tagging as: ${$.util.colors.yellow(tag)}`);
+        $.git.tag(tag, `tagging as ${tag}`);
 
         // if there was some error, just pass as the first parameter here
         cb(null, file);
@@ -25,11 +25,11 @@ module.exports = (gulp, pipes, $, options) => {
     }
 
   function error(err) {
-      $.util.log('** Une erreur est apparue : ' + err);
+      $.util.log(`** Une erreur est apparue : ${err}`);
       throw err;
     }
 
-  let fileName = '';
+  let fileName = ``;
 
   pipes.checkRepo = () => {
     $.util.log($.util.colors.yellow('Checking git repository...'));
@@ -48,6 +48,7 @@ module.exports = (gulp, pipes, $, options) => {
   pipes.bumpVersion = (releaseType) => {
     $.util.log('Bumping version');
     return gulp.src(['./package.json', './bower.json'])
+    .pipe($.plumber())
     .pipe($.bump({ type: releaseType }))
     .on('end', () => {$.util.log('Saving files');})
     .pipe(gulp.dest('./'))
@@ -60,26 +61,29 @@ module.exports = (gulp, pipes, $, options) => {
 
   pipes.tag = () => {
     gulp.src(['./package.json', './bower.json'])
+    .pipe($.plumber())
     .pipe(tagVersion())
     .on('error', error);
   };
 
   pipes.zip = () => {
-    let json = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
-    let v = json.version;
-    fileName = 'ocean-frontend-' + v + '.zip';
+    const json = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+    const v = json.version;
+    fileName = `ocean-frontend-${v}.zip`;
 
-    return gulp.src(paths.dist + '/**')
+    return gulp.src(`${paths.dist}/**`)
+    .pipe($.plumber())
     .pipe($.zip(fileName))
     .on('end', function () {$.util.log('Files zipped');})
     .on('error', error)
-    .pipe(gulp.dest('release/nc/gouv/dfpc/sefadm/frontend/' + v + '/'))
+    .pipe(gulp.dest(`release/nc/gouv/dfpc/sefadm/frontend/${v}/`))
     .on('end', function () {$.util.log('Zip saved');})
     .on('error', error);
   };
 
   pipes.nextVersion = () => {
     gulp.src(['./package.json', './bower.json'])
+    .pipe($.plumber())
     .pipe($.bump({ type: 'prerelease', preid: 'snapshot' }))
     .pipe(gulp.dest('./'))
     .pipe($.git.add())
@@ -119,19 +123,20 @@ module.exports = (gulp, pipes, $, options) => {
   pipes.runReleaseType = (releaseType, branch) => {
     if (releaseType === null) {
       return gulp.src('')
-.pipe($.prompt.prompt({
-  type: 'rawlist',
-  name: 'bump',
-  message: 'What type of release would you like to do ?',
-  choices: [
-  'patch',
-  'minor',
-  'major',
-  'prerelease',
-  ],
-					}, res => {
-  inc(res.bump, branch);
-					}));
+                .pipe($.prompt.prompt({
+                  type: 'rawlist',
+                  name: 'bump',
+                  message: 'What type of release would you like to do ?',
+                  choices: [
+                  'patch',
+                  'minor',
+                  'major',
+                  'prerelease',
+                  ],
+                },
+                res => {
+                  inc(res.bump, branch);
+                }));
     } else {
       return inc(releaseType, branch);
     }

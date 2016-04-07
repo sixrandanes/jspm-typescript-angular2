@@ -6,7 +6,7 @@ module.exports = {
   livereloadPort: 35729,
   errorHandler: title => {
     err => {
-      $.util.log($.util.colors.red('[' + title + ']'),
+      $.util.log($.util.colors.red(`[${title}]`),
           err.toString());
       this.emit('end');
     };

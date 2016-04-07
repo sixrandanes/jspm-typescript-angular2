@@ -1,12 +1,12 @@
 'use strict';
 module.exports = (gulp, pipes, $, options) => {
 
-  let map = require('map-stream');
-  let path = require('path');
-  let notifier = require('node-notifier');
+  const map = require('map-stream');
+  const path = require('path');
+  const notifier = require('node-notifier');
 
   pipes.tsLinters = () => {
-    return gulp.src(['./' + options.src + '/**/**.ts', '!./app/jspm_packages/**',  '!./app/assets/**'])
+    return gulp.src([`./${options.src}/**/**.ts`, '!./app/jspm_packages/**',  '!./app/assets/**'])
     .pipe($.tslint())
     .pipe($.tslint.report('verbose', {
       emitError: false,
@@ -15,7 +15,7 @@ module.exports = (gulp, pipes, $, options) => {
   };
 
   pipes.cssLinters = () => {
-    gulp.src('./' + options.src + '/**/**.scss')
+    gulp.src(`./${options.src}/**/**.scss`)
                 .pipe($.scssLint({
                   reporterOutputFormat: 'Checkstyle',
                   filePipeOutput: './scsslint-checkstyle.xml',

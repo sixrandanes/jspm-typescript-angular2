@@ -1,7 +1,5 @@
 'use strict';
-
 module.exports = (gulp, pipes, $, options) => {
-
   $.sequence.use(gulp);
 
   pipes.delDist = (cb) => {
@@ -13,7 +11,7 @@ module.exports = (gulp, pipes, $, options) => {
 
         //gestion police firefox & chrome
         .pipe($.filter(['**/*.woff2', '**/*.woff', '**/*.ttf']))
-        .pipe(gulp.dest(options.dist + '/assets/font'));
+        .pipe(gulp.dest(`${options.dist}/assets/font`));
   };
 
   pipes.copyImages = () => {
@@ -22,20 +20,20 @@ module.exports = (gulp, pipes, $, options) => {
     })
         .pipe($.filter('**/*.{png,jpg,jpeg,gif}'))
                 .pipe($.rename({
-                  dirname: options.dist + '/assets/images',
+                  dirname: `${options.dist}/assets/images`,
                 }))
                 .pipe(gulp.dest('.'));
   };
 
   pipes.copyTinyMce = () => {
     gulp.src(options.tinymceFiles)
-        .pipe(gulp.dest(options.dist + '/assets/tinymce'));
+        .pipe(gulp.dest(`${options.dist}/assets/tinymce`));
   };
 
   pipes.copyImagesJspm = () => {
     gulp.src('./' + options.src + '/jspm_packages/**/DataTables/**/*.png')
                 .pipe($.rename({
-                  dirname: options.dist + '/assets/images/jspm/',
+                  dirname: `${options.dist}/assets/images/jspm/`,
                 }))
                 .pipe(gulp.dest('.'));
   };
@@ -45,36 +43,36 @@ module.exports = (gulp, pipes, $, options) => {
     //la version de la lib.
     const regexp = new RegExp(
         'jspm_packages/github/DataTables/DataTables@[0-9].[0-9]?[0-9].[0-9]?[0-9]/images/', 'g');
-    return gulp.src(options.dist + '/bundle.js')
+    return gulp.src(`${options.dist}/bundle.js`)
         .pipe($.replace(regexp, './assets/images/jspm/'))
         .pipe(gulp.dest(options.dist));
   };
 
   pipes.minifyImages = () => {
-    gulp.src([options.dist + '/assets/images'])
+    gulp.src([`${options.dist}/assets/images`])
         .pipe($.filter('**/*.{png,jpg,jpeg,gif}'))
                 .pipe($.imageOptimization({
                   optimizationLevel: 5,
                   progressive: true,
                   interlaced: true,
-                })).pipe(gulp.dest(options.dist + '/assets/images'));
+                })).pipe(gulp.dest(`${options.dist}/assets/images`));
   };
 
   pipes.copyConfig = () => {
-    gulp.src([options.src + '/conf/ocean-front.json'])
+    gulp.src([`${options.src}/conf/ocean-front.json`])
         .pipe($.jsonminify())
-        .pipe(gulp.dest(options.dist + '/conf/'));
+        .pipe(gulp.dest(`${options.dist}/conf/`));
   };
 
   pipes.copyIndex = () => {
-    gulp.src([options.src + '/index.html'])
+    gulp.src([`${options.src}/index.html`])
         .pipe(gulp.dest(options.dist));
   };
 
   pipes.copyMisc = () => {
-    gulp.src('./' + options.src + '/assets/misc/**')
+    gulp.src(`./${options.src}/assets/misc/**`)
         .pipe($.jsonminify())
-        .pipe(gulp.dest(options.dist + '/assets/misc'));
+        .pipe(gulp.dest(`${options.dist}/assets/misc`));
   };
 
   pipes.templateCache = () => {
@@ -88,17 +86,17 @@ module.exports = (gulp, pipes, $, options) => {
                   standalone: 'true',
                   root: './',
                 }))
-                .pipe(gulp.dest(options.src + '/shared/modules/'));
+                .pipe(gulp.dest(`${options.src}/shared/modules/`));
   };
 
   pipes.saveTemplate = () => {
-    gulp.src('./' + options.src + '/shared/modules/templates.module.js')
+    gulp.src(`./${options.src}/shared/modules/templates.module.js`)
         .pipe(gulp.dest(options.dest));
   };
 
   pipes.restoreTemplate = () => {
-    gulp.src('./' + options.dest + '/templates.module.js')
-        .pipe(gulp.dest(options.src + '/shared/modules/'));
+    gulp.src(`./${options.dest}/templates.module.js`)
+        .pipe(gulp.dest(`${options.src}/shared/modules/`));
   };
 
   pipes.cleanTemplate = () => {
@@ -106,13 +104,13 @@ module.exports = (gulp, pipes, $, options) => {
   };
 
   pipes.minifyCssTask = () => {
-    gulp.src(options.dist + '/assets/stylesheets/ocean.css')
+    gulp.src(`${options.dist}/assets/stylesheets/ocean.css`)
         .pipe($.minifyCss())
-        .pipe(gulp.dest(options.dist + '/assets/stylesheets/'));
+        .pipe(gulp.dest(`${options.dist}/assets/stylesheets/`));
   };
 
   pipes.bundle = () => {
-    gulp.src('./' + options.dist + '/')
+    gulp.src(`./${options.dist}/`)
        .pipe($.exec('jspm bundle-sfx ./client/app/bootstrap dist/bundle.js --skip-source-maps'));
   };
 
@@ -127,14 +125,14 @@ module.exports = (gulp, pipes, $, options) => {
 
   // Idem ici pour le uglify, surtout pour les perfs
   pipes.uglify = () => {
-    gulp.src(options.dist + '/bundle.js')
+    gulp.src(`${options.dist}/bundle.js`)
         .pipe($.uglify())
         .pipe(gulp.dest(options.dist));
   };
 
   pipes.injectJS = () => {
-    gulp.src(options.dist + '/index.html')
-                .pipe($.inject(gulp.src(options.dist + '/bundle.js', {
+    gulp.src(`${options.dist}/index.html`)
+                .pipe($.inject(gulp.src(`${options.dist}/bundle.js`, {
                   read: false,
                 }), { relative: true }))
                 .pipe(gulp.dest(options.dist));

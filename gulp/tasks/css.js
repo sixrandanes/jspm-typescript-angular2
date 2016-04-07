@@ -4,6 +4,7 @@ module.exports = (gulp, pipes, $, options) => {
   //Sass task
   pipes.sassTask = () => {
     gulp.src(options.scssFiles)
+    .pipe(pipes.plumberTask())
     .pipe($.sourcemaps.init())
     .pipe($.sass.sync()
         .on('error', $.sass.logError))
@@ -18,13 +19,14 @@ module.exports = (gulp, pipes, $, options) => {
   //Sass Build task
   pipes.sassBuildTask = () => {
     gulp.src(options.scssFiles)
+    .pipe(pipes.plumberTask())
         .pipe($.sass.sync({ sourcemap: 'none' })
             .on('error', $.sass.logError))
                 .pipe($.autoprefixer({
                   cascade: false,
                 }))
                 .pipe($.concat('ocean.css'))
-                .pipe(gulp.dest('./' + options.dist + '/assets/stylesheets/'));
+                .pipe(gulp.dest(`./${options.dist}/assets/stylesheets/`));
   };
 
   gulp.task('sass', `Transpile les fichiers scss en css, créée les fichiers sourcemaps, autoprefixe

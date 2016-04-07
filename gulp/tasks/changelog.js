@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = (gulp, pipes, $, options) => {
-  let changelog = require('conventional-changelog');
+  const changelog = require('conventional-changelog');
 
   function makeChangelog(config) {
-    let deferred = $.q.defer();
+    const deferred = $.q.defer();
     changelog(config, (err, log) => {
       if (err) {
         deferred.reject(err);
@@ -17,9 +17,9 @@ module.exports = (gulp, pipes, $, options) => {
   }
 
   gulp.task('changelog', 'Génère le fichier CHANGELOG.md', () => {
-    let changelogFile = 'CHANGELOG.md';
-    let packagejson = require('../../package.json');
-    let config = {
+    const changelogFile = 'CHANGELOG.md';
+    const packagejson = require('../../package.json');
+    const config = {
       file: changelogFile,
       repository: packagejson.repository.url,
       version: packagejson.version,

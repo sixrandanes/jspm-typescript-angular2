@@ -91,6 +91,7 @@
     "gulp-notify": "2.2.0",
     "gulp-open": "1.0.0",
     "gulp-param": "0.6.3",
+    "gulp-plumber": "1.0.1",
     "gulp-prompt": "0.1.2",
     "gulp-protractor": "1.0.0",
     "gulp-remember": "0.3.0",

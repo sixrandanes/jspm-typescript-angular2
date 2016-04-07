@@ -1,11 +1,16 @@
 'use strict';
-let del = require('del');
+const del = require('del');
 
 module.exports = (gulp, pipes, $, options) => {
-  let gulpSequence = require('gulp-sequence')
+  const gulpSequence = require('gulp-sequence')
       .use(gulp);
-  let es = require('event-stream');
-  let server = require('../server');
+  const es = require('event-stream');
+  const server = require('../server');
+  pipes.plumberTask = function () {
+    return $.plumber({
+      errorHandler: options.errorHandler,
+    });
+  };
 
   pipes.cleanDev = cb => {
     $.del([options.dest], cb);
@@ -21,7 +26,7 @@ module.exports = (gulp, pipes, $, options) => {
 
   pipes.open = (cb) => {
     gulp.src(options.src)
-        .pipe($.open({ uri:'http://localhost:5000', app:'chrome' }, cb));
+        .pipe($.open({ uri:`http://localhost:${options.port}`, app:'chrome' }, cb));
   };
 
   gulp.task('notifyLivereload', 'Notifie le serveur qu\'il doit recharger la page', () => {

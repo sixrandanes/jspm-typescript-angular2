@@ -5,18 +5,18 @@ function randomIntFromInterval(min, max) {
 }
 
 module.exports = (gulp, pipes, $, options) => {
-  let server = require('../server');
+  const server = require('../server');
 
   gulp.task('webdriver_update', 'Lance la mise à jour du webdriver', $.protractor.webdriver_update);
 
   gulp.task('e2e', 'Execute les TI avec protractor', ['webdriver_update', 'server'], done => {
     //TODO var randomPort = randomIntFromInterval(5000, 6000);
-    let randomPort = 5000;
+    const randomPort = 5000;
     options.port = randomPort;
     gulp.src(['e2e/*spec.js'])
                 .pipe($.protractor.protractor({
                   configFile: './protractor.config.js',
-                  args: ['--baseUrl', 'http://localhost:' + randomPort],
+                  args: ['--baseUrl', `http://localhost:${randomPort}`],
                   debug: false,
                 }))
                 .on('error', e => {
@@ -32,7 +32,7 @@ module.exports = (gulp, pipes, $, options) => {
   });
 
   gulp.task('elementor', 'Lance elementor', ['webdriver_update', 'server'], cb => {
-    let exec = require('child_process')
+    const exec = require('child_process')
         .exec;
     exec('webdriver-manager start', (err, stdout, stderr) => {
       console.log(stdout);
@@ -44,7 +44,7 @@ module.exports = (gulp, pipes, $, options) => {
       console.log('Webdriver demarré');
     }, 3000);
 
-    exec('elementor http://localhost:' + options.port, (err, stdout, stderr) => {
+    exec(`elementor http://localhost:${options.port}`, (err, stdout, stderr) => {
       console.log(stdout);
       console.log(stderr);
       cb(err);
