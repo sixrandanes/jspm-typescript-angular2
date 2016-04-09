@@ -1,5 +1,5 @@
 {
-  "name": "ocean",
+  "name": "jspm-typescript-angular2",
   "version": "0.0.1",
   "dependencies": {
     "JSONStream": {
@@ -2467,6 +2467,10 @@
     "isarray": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz"
+    },
+    "isbinaryfile": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/isbinaryfile/-/isbinaryfile-3.0.0.tgz"
     },
     "isexe": {
       "version": "1.1.2",
